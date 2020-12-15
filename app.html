@@ -20,7 +20,7 @@
         <div class="loader"></div>
     </div>
     <div class="logo"></div>
-    <div class="version">v7.8.0C</div>
+    <div id="version" class="version"></div>
 </div>
 <iframe id="frame" width="100%" src="https://www.habbocity.me/profil?app=true"></iframe>
 <div class="buttons">
@@ -33,26 +33,29 @@
 </div>
 <div id="messages"></div>
 <script>
-    const electron = require('electron');
-    const ipcRenderer = electron.ipcRenderer;
-
+    const {ipcRenderer} = require('electron');
     const updater = document.getElementById("updater");
     const progression = document.getElementById("progression");
+    const version = document.getElementById("version");
 
-    ipcRenderer.on("checking-for-update", (message) => {
+    ipcRenderer.on("version", (event, data) => {
+        version.innerHTML = data;
+    });
+
+    ipcRenderer.on("checking-for-update", (event, data) => {
         progression.innerHTML = "Verification des mises à jours";
         updater.style.display = "block";
     });
 
-    ipcRenderer.on("update-not-available", (message) => {
-        progression.innerHTML = "Aucune mise à jour, lancement en cours";
+    ipcRenderer.on("update-not-available", (event, data) => {
         setTimeout(() => {
+            progression.innerHTML = "Aucune mise à jour, lancement en cours";
             updater.style.display = "none";
         }, 5000);
     });
 
-    ipcRenderer.on("download-progress", (message) => {
-        progression.innerHTML = message.percent + "%";
+    ipcRenderer.on("download-progress", (event, data) => {
+        progression.innerHTML = data['percent'] + "%";
     });
 
 

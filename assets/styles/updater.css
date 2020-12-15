@@ -3,6 +3,7 @@
     height: 100%;
     display: block;
     width: 100%;
+    z-index: 999999;
     background: linear-gradient(rgb(75, 34, 174), rgb(149, 105, 243));
 }
 

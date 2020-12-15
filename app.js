@@ -3,6 +3,7 @@ const {autoUpdater} = require("electron-updater");
 
 const path = require('path');
 const url = require('url');
+const channel = 'main';
 
 let pluginName;
 let pluginVersion;
@@ -26,7 +27,9 @@ switch (process.platform) {
         break;
 }
 app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname.includes(".asar") ? process.resourcesPath : __dirname, "flash/" + pluginName));
-
+let sendWindow = (identifier, message) => {
+    mainWindow.webContents.send(identifier, message);
+};
 let createWindow = async () => {
     mainWindow = new BrowserWindow({
         title: "HabboCity",
@@ -42,12 +45,13 @@ let createWindow = async () => {
     mainWindow.maximize();
     mainWindow.show();
     mainWindow.setMenu(null);
-
+    mainWindow.webContents.openDevTools();
     await mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, `app.html`),
         protocol: 'file:',
         slashes: true
     }));
+    sendWindow("version", app.getVersion());
 
     ipcMain.on('zoomOut', () => {
         let factor = mainWindow.webContents.getZoomFactor();
@@ -80,10 +84,6 @@ app.on('activate', async () => {
     }
 });
 
-let sendWindow = (identifier, message) => {
-    mainWindow.webContents.send(identifier, message);
-}
-
 autoUpdater.on('checking-for-update', () => {
     sendWindow('checking-for-update', '');
 });
@@ -106,4 +106,5 @@ autoUpdater.on('download-progress', (d) => {
 });
 autoUpdater.on('update-downloaded', () => {
     sendWindow('update-downloaded', 'Update downloaded');
+    autoUpdater.quitAndInstall();
 });
