@@ -40,11 +40,15 @@
     const progression = document.getElementById("progression");
 
     ipcRenderer.on("checking-for-update", (message) => {
+        progression.innerHTML = "Verification des mises à jours";
         updater.style.display = "block";
     });
 
     ipcRenderer.on("update-not-available", (message) => {
-        updater.style.display = "none";
+        progression.innerHTML = "Aucune mise à jour, lancement en cours";
+        setTimeout(() => {
+            updater.style.display = "none";
+        }, 5000);
     });
 
     ipcRenderer.on("download-progress", (message) => {

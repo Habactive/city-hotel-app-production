@@ -103,7 +103,7 @@ autoUpdater.on('download-progress', (d) => {
         transferred: d.transferred,
         total: d.total
     });
-})
+});
 autoUpdater.on('update-downloaded', () => {
     sendWindow('update-downloaded', 'Update downloaded');
 });

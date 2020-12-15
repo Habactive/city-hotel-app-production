@@ -1,6 +1,6 @@
 {
   "name": "ity",
-  "version": "0.7.8",
+  "version": "0.7.9",
   "main": "app.js",
   "description": "City: Créez votre avatar, décorez votre appartement ! Tchattez avec vos amis.",
   "author": "City Games",
@@ -14,7 +14,7 @@
     "electron-builder": "^22.9.1"
   },
   "dependencies": {
-    "electron-updater": "^4.0.6"
+    "electron-updater": "^4.3.5"
   },
   "build": {
     "appId": "City",
@@ -41,7 +41,6 @@
       "allowToChangeInstallationDirectory": true,
       "perMachine": false
     },
-
     "mac": {
       "category": "your.app.category.type",
       "target": [
