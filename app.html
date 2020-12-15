@@ -14,7 +14,7 @@
             connexion en cours
         </div>
         <div id="progression" class="progression">
-            mise à jour...
+            ...
         </div>
         <div class="duck"></div>
         <div class="loader"></div>
@@ -43,14 +43,13 @@
     });
 
     ipcRenderer.on("checking-for-update", (event, data) => {
-        progression.innerHTML = "Verification des mises à jours";
+        progression.innerHTML = "mise à jour...";
         updater.style.display = "block";
     });
 
     ipcRenderer.on("update-not-available", (event, data) => {
-        setTimeout(() => {
-            updater.style.display = "none";
-        }, 500000);
+        updater.style.display = "none";
+        updater.innerHTML = "";
     });
 
     ipcRenderer.on("download-progress", (event, data) => {
