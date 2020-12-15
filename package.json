@@ -1,6 +1,6 @@
 {
   "name": "city",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "main": "app.js",
   "description": "City: Créez votre avatar, décorez votre appartement ! Tchattez avec vos amis.",
   "author": "City Games",
