@@ -5,7 +5,6 @@
     background: rgba(58, 56, 50, 0.9);
     right: 0;
     bottom: 100px;
-    height: 94px;
     width: 50px;
     border-radius: 10px 0 0 10px;
 }
@@ -25,6 +24,33 @@
     border-radius: 100%;
 }
 
+.buttons .button:hover .tooltip {
+    display: block;
+}
+
+.buttons .button .tooltip {
+    position: absolute;
+    background: white;
+    display: none;
+    padding: 8px 10px;
+    text-align: center;
+    right: 60px;
+    width: 100px;
+    box-shadow: 0 0 6px #0000006e;
+    border-radius: 10px;
+}
+
+.buttons .button .tooltip .arrow {
+    width: 0;
+    right: -6px;
+    top: 12px;
+    height: 0;
+    position: absolute;
+    border-style: solid;
+    border-width: 5px 0 5px 6px;
+    border-color: transparent transparent transparent #ffffff;
+}
+
 .buttons .button .icon {
     height: 25px;
     width: 25px;
@@ -32,6 +58,14 @@
 
 .buttons .button .out {
     background: url('../images/out.png');
+}
+
+.buttons .button .screen {
+    background: url('../images/screen.png');
+}
+
+.buttons .button .cache {
+    background: url('../images/cache.png');
 }
 
 .buttons .button .in {

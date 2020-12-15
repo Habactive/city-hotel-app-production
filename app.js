@@ -36,7 +36,7 @@ let createWindow = async () => {
         webPreferences: {
             plugins: true,
             nodeIntegration: true,
-            contextIsolation:false
+            contextIsolation: false
         },
         show: false,
         frame: true,
@@ -45,7 +45,6 @@ let createWindow = async () => {
     mainWindow.maximize();
     mainWindow.show();
     mainWindow.setMenu(null);
-    mainWindow.webContents.openDevTools();
     await mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, `app.html`),
         protocol: 'file:',
@@ -53,6 +52,21 @@ let createWindow = async () => {
     }));
     sendWindow("version", app.getVersion());
 
+    ipcMain.on('clearcache', async () => {
+        let session = mainWindow.webContents.session;
+        await session.clearCache();
+        app.relaunch();
+        app.exit();
+    });
+
+
+    ipcMain.on('fullscreen', () => {
+        if (mainWindow.isFullScreen())
+            mainWindow.setFullScreen(false);
+        else
+            mainWindow.setFullScreen(true);
+
+    });
     ipcMain.on('zoomOut', () => {
         let factor = mainWindow.webContents.getZoomFactor();
         if (factor > 0.3) {

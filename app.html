@@ -5,9 +5,26 @@
     <link rel="stylesheet" type="text/css" href="assets/styles/app.css">
     <link rel="stylesheet" type="text/css" href="assets/styles/updater.css">
     <link rel="stylesheet" type="text/css" href="assets/styles/buttons.css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/alert.css">
 </head>
 <body>
+<div id="alert" class="alert">
+    <div class="box">
+        <div class="title">Attention...</div>
+        <div id="description" class="description">Tu souhaites vider ton cache et relancer l'application.</div>
+        <div class="btns">
+            <div id="cancel" class="button" style="float:left;background: #ed1c24;">
+                <div class="alpha"></div>
+                Annuler
+            </div>
 
+            <div id="confirm" class="button">
+                <div class="alpha"></div>
+                Confirmer
+            </div>
+        </div>
+    </div>
+</div>
 <div id="updater" class="updater">
     <div class="body">
         <div class="connection">
@@ -24,11 +41,33 @@
 </div>
 <iframe id="frame" width="100%" src="https://www.habbocity.me/profil?app=true"></iframe>
 <div class="buttons">
+    <div id="screen" class="button">
+        <div class="icon screen"></div>
+        <div class="tooltip">
+            <div class="arrow"></div>
+            Plein écran
+        </div>
+    </div>
+    <div id="cache" class="button">
+        <div class="icon cache"></div>
+        <div class="tooltip">
+            <div class="arrow"></div>
+            Vider le cache
+        </div>
+    </div>
     <div id="zoomOut" class="button">
         <div class="icon out"></div>
+        <div class="tooltip">
+            <div class="arrow"></div>
+            Zoom -1%
+        </div>
     </div>
     <div id="zoomIn" class="button">
         <div class="icon in"></div>
+        <div class="tooltip">
+            <div class="arrow"></div>
+            Zoom +1%
+        </div>
     </div>
 </div>
 <div id="messages"></div>
@@ -59,12 +98,36 @@
 
     const zoomIn = document.getElementById("zoomIn");
     const zoomOut = document.getElementById("zoomOut");
+    const screen = document.getElementById("screen");
+
     zoomIn.addEventListener('click', () => {
         ipcRenderer.send("zoomIn", "");
+    });
+    screen.addEventListener('click', () => {
+        ipcRenderer.send("fullscreen", "");
     });
     zoomOut.addEventListener('click', () => {
         ipcRenderer.send("zoomOut", "");
     });
+
+
+    const alert = document.getElementById("alert");
+    const cancel = document.getElementById("cancel");
+    const confirm = document.getElementById("confirm");
+    const description = document.getElementById("description");
+    cancel.onclick = () => {
+        alert.style.visibility = "hidden";
+    };
+
+    const cache = document.getElementById("cache");
+    cache.addEventListener('click', () => {
+        alert.style.visibility = "visible";
+        confirm.onclick = () => {
+            ipcRenderer.send("clearcache", "");
+        };
+    });
+
+
 </script>
 </body>
 </html>
