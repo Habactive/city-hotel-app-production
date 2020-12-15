@@ -92,6 +92,7 @@
     });
 
     ipcRenderer.on("download-progress", (event, data) => {
+        console.log(data)
         progression.innerHTML = data['percent'] + "%";
     });
 
