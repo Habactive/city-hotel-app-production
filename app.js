@@ -50,7 +50,6 @@ let createWindow = async () => {
     mainWindow.maximize();
     mainWindow.show();
     mainWindow.setMenu(null);
-    mainWindow.webContents.openDevTools();
 
     await mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, `app.html`),
