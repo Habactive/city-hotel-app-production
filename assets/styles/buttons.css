@@ -1,0 +1,43 @@
+.buttons {
+    z-index: 99999;
+    margin-top: 20px;
+    position: fixed;
+    background: rgba(58, 56, 50, 0.9);
+    right: 0;
+    bottom: 100px;
+    height: 94px;
+    width: 50px;
+    border-radius: 10px 0 0 10px;
+}
+
+.buttons .button {
+    position: relative;
+    z-index: 9999;
+    height: 36px;
+    left: 8px;
+    margin-top: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 4px;
+    width: 36px;
+    cursor: pointer;
+    border-radius: 100%;
+}
+
+.buttons .button .icon {
+    height: 25px;
+    width: 25px;
+}
+
+.buttons .button .out {
+    background: url('../images/out.png');
+}
+
+.buttons .button .in {
+    background: url('../images/in.png');
+}
+
+.buttons .button:hover {
+    background: #00000073;
+}

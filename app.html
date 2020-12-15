@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>City</title>
+    <link rel="stylesheet" type="text/css" href="assets/styles/app.css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/updater.css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/buttons.css">
+</head>
+<body>
+
+<div id="updater" class="updater">
+    <div class="body">
+        <div class="connection">
+            Connexion en cours
+        </div>
+        <div class="progression">
+            0%
+        </div>
+        <div class="duck"></div>
+        <div class="loader"></div>
+    </div>
+    <div class="logo"></div>
+    <div class="version">v7.8.0C</div>
+</div>
+<iframe id="frame" width="100%" src="https://www.habbocity.me/profil?app=true"></iframe>
+<div class="buttons">
+    <div id="zoomOut" class="button">
+        <div class="icon out"></div>
+    </div>
+    <div id="zoomIn" class="button">
+        <div class="icon in"></div>
+    </div>
+</div>
+<div id="messages"></div>
+<script>
+    const electron = require('electron');
+    const ipcRenderer = electron.ipcRenderer;
+
+    const updater = document.getElementById("updater");
+    console.log(updater)
+    ipcRenderer.on("checking-for-update", (message) => {
+        updater.style.display = "block";
+    });
+
+    ipcRenderer.on("update-not-available", (message) => {
+        updater.style.display = "none";
+    });
+
+    ipcRenderer.on("download-progress", (message) => {
+        console.log(message)
+    });
+
+
+    const zoomIn = document.getElementById("zoomIn");
+    const zoomOut = document.getElementById("zoomOut");
+    zoomIn.addEventListener('click', () => {
+        ipcRenderer.send("zoomIn", "");
+    });
+    zoomOut.addEventListener('click', () => {
+        ipcRenderer.send("zoomOut", "");
+    });
+</script>
+</body>
+</html>

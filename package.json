@@ -1,27 +1,48 @@
 {
-  "name": "electron-updater-example",
-  "version": "0.7.1",
-  "main": "main.js",
-  "description": "electron-updater example project",
-  "author": "Matt Haggard",
+  "name": "city",
+  "version": "0.7.3",
+  "main": "app.js",
+  "description": "City: Créez votre avatar, décorez votre appartement ! Tchattez avec vos amis.",
+  "author": "City Games",
   "scripts": {
-    "publish": "build -p always"
+    "start": "electron .",
+    "publish": "electron-builder --win -p always",
+    "build": "electron-builder --win"
   },
   "devDependencies": {
-    "electron": "^3.0.2",
-    "electron-builder": "^20.28.4"
+    "electron": "11.0.3",
+    "electron-builder": "^22.9.1"
   },
   "dependencies": {
-    "electron-log": "^1.3.0",
     "electron-updater": "^4.0.6"
   },
   "build": {
-    "appId": "com.github.iffy.electronupdaterexample",
+    "appId": "city",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "anis8",
+        "repo": "city-hotel-app-production"
+      }
+    ],
+    "extraResources": [
+      "./flash/**"
+    ],
     "mac": {
       "category": "your.app.category.type",
       "target": [
         "zip",
         "dmg"
+      ]
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
       ]
     }
   }
