@@ -1,6 +1,6 @@
 {
   "name": "city",
-  "version": "0.8.4",
+  "version": "0.8.5",
   "main": "app.js",
   "description": "City: Créez votre avatar, décorez votre appartement ! Tchattez avec vos amis.",
   "author": "City Games",
@@ -36,9 +36,7 @@
       "installerIcon": "icon.ico",
       "uninstallerIcon": "icon.ico",
       "uninstallDisplayName": "City",
-      "license": "assets/license/license.txt",
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true,
+      "oneClick": true,
       "perMachine": false,
       "artifactName": "City-${version}.${ext}"
     },
