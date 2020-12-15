@@ -10,8 +10,13 @@ let mainWindow;
 
 switch (process.platform) {
     case 'win32':
-        pluginName = 'pepflashplayer.dll';
-        pluginVersion = '20.0.0.306';
+        if (process.arch === 'x64' || process.arch === 'arm64') {
+            pluginName = 'pepflashplayer.dll';
+            pluginVersion = '20.0.0.306';
+        } else {
+            pluginName = 'pepflashplayer-32.dll';
+            pluginVersion = '32.0.0.465';
+        }
         break;
     case 'darwin':
         pluginName = 'PepperFlashPlayer.plugin';
