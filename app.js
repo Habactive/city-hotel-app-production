@@ -10,12 +10,12 @@ let mainWindow;
 
 switch (process.platform) {
     case 'win32':
-        if (process.arch === 'x64' || process.arch === 'arm64') {
-            pluginName = 'pepflashplayer.dll';
-            pluginVersion = '20.0.0.306';
-        } else {
+        if (process.arch === "x32" || process.arch === "ia32") {
             pluginName = 'pepflashplayer-32.dll';
             pluginVersion = '32.0.0.465';
+        } else {
+            pluginName = 'pepflashplayer.dll';
+            pluginVersion = '20.0.0.306';
         }
         break;
     case 'darwin':
@@ -30,6 +30,7 @@ switch (process.platform) {
         pluginVersion = '32.0.0.207';
         break;
 }
+app.commandLine.appendSwitch("disable-renderer-backgrounding");
 app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname.includes(".asar") ? process.resourcesPath : __dirname, "flash/" + pluginName));
 let sendWindow = (identifier, message) => {
     mainWindow.webContents.send(identifier, message);

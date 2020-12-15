@@ -1,6 +1,6 @@
 {
   "name": "city",
-  "version": "0.8.8",
+  "version": "0.9.1",
   "main": "app.js",
   "description": "City: Créez votre avatar, décorez votre appartement ! Tchattez avec vos amis.",
   "author": "City Games",
@@ -10,11 +10,11 @@
     "build": "electron-builder --win"
   },
   "devDependencies": {
-    "electron": "11.0.3",
-    "electron-builder": "^22.9.1"
+    "electron": "11.1.0",
+    "electron-builder": "22.9.1"
   },
   "dependencies": {
-    "electron-updater": "^4.3.5"
+    "electron-updater": "4.3.5"
   },
   "build": {
     "appId": "City",
