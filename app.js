@@ -3,7 +3,6 @@ const {autoUpdater} = require("electron-updater");
 
 const path = require('path');
 const url = require('url');
-const channel = 'main';
 
 let pluginName;
 let pluginVersion;
@@ -36,7 +35,8 @@ let createWindow = async () => {
         icon: path.join(__dirname, '/icon.ico'),
         webPreferences: {
             plugins: true,
-            nodeIntegration: true
+            nodeIntegration: true,
+            contextIsolation:false
         },
         show: false,
         frame: true,
