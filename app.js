@@ -30,7 +30,7 @@ app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname.includes(".
 let createWindow = async () => {
     mainWindow = new BrowserWindow({
         title: "HabboCity",
-        icon: __dirname + 'assets/icon.ico',
+        icon: path.join(__dirname, '/icon.ico'),
         webPreferences: {
             plugins: true,
             nodeIntegration: true

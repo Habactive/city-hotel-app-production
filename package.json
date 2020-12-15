@@ -1,6 +1,6 @@
 {
-  "name": "city",
-  "version": "0.7.3",
+  "name": "ity",
+  "version": "0.7.6",
   "main": "app.js",
   "description": "City: Créez votre avatar, décorez votre appartement ! Tchattez avec vos amis.",
   "author": "City Games",
@@ -17,7 +17,7 @@
     "electron-updater": "^4.0.6"
   },
   "build": {
-    "appId": "city",
+    "appId": "City",
     "publish": [
       {
         "provider": "github",
@@ -28,6 +28,20 @@
     "extraResources": [
       "./flash/**"
     ],
+    "directories": {
+      "buildResources": "resources",
+      "output": "release"
+    },
+    "nsis": {
+      "installerIcon": "icon.ico",
+      "uninstallerIcon": "icon.ico",
+      "uninstallDisplayName": "City",
+      "license": "assets/license/license.txt",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false
+    },
+
     "mac": {
       "category": "your.app.category.type",
       "target": [

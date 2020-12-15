@@ -13,7 +13,7 @@
         <div class="connection">
             Connexion en cours
         </div>
-        <div class="progression">
+        <div id="progression" class="progression">
             0%
         </div>
         <div class="duck"></div>
@@ -37,7 +37,8 @@
     const ipcRenderer = electron.ipcRenderer;
 
     const updater = document.getElementById("updater");
-    console.log(updater)
+    const progression = document.getElementById("progression");
+
     ipcRenderer.on("checking-for-update", (message) => {
         updater.style.display = "block";
     });
@@ -47,7 +48,7 @@
     });
 
     ipcRenderer.on("download-progress", (message) => {
-        console.log(message)
+        progression.innerHTML = message.percent + "%";
     });
 
 
