@@ -49,9 +49,6 @@ let createWindow = async () => {
         slashes: true
     }));
 
-
-    mainWindow.webContents.openDevTools();
-
     ipcMain.on('zoomOut', () => {
         let factor = mainWindow.webContents.getZoomFactor();
         if (factor > 0.3) {
