@@ -1,6 +1,6 @@
 {
   "name": "city",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "main": "app.js",
   "description": "City: Créez votre avatar, décorez votre appartement ! Tchattez avec vos amis.",
   "author": "City Games",
@@ -39,7 +39,8 @@
       "license": "assets/license/license.txt",
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
-      "perMachine": false
+      "perMachine": false,
+      "artifactName": "City-${version}.${ext}"
     },
     "mac": {
       "category": "your.app.category.type",
