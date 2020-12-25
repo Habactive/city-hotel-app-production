@@ -42,23 +42,26 @@ let createWindow = async () => {
         webPreferences: {
             plugins: true,
             nodeIntegration: true,
-            contextIsolation: false
+            contextIsolation: false,
+            webviewTag: true,
+            webSecurity: false
         },
         show: false,
-        frame: true,
         backgroundColor: "#000",
     });
     mainWindow.maximize();
     mainWindow.show();
     mainWindow.setMenu(null);
 
+   // await mainWindow.loadURL("https://habbocity.me");
     await mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, `app.html`),
         protocol: 'file:',
         slashes: true
     }));
-    sendWindow("version", app.getVersion());
 
+    sendWindow("version", app.getVersion());
+   // mainWindow.webContents.openDevTools();
     ipcMain.on('clearcache', async () => {
         let session = mainWindow.webContents.session;
         await session.clearCache();

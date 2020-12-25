@@ -1,30 +1,26 @@
 {
   "name": "city",
-  "version": "0.9.5",
+  "version": "0.9.8",
   "main": "app.js",
   "description": "City: Créez votre avatar, décorez votre appartement ! Tchattez avec vos amis.",
   "author": "City Games",
   "scripts": {
     "start": "electron .",
     "publish": "electron-builder --win -p always",
-    "build": "electron-builder --win"
+    "build": "electron-builder --linux"
   },
   "devDependencies": {
+    "dotenv": "^8.2.0",
     "electron": "11.1.0",
-    "electron-builder": "22.9.1"
+    "electron-builder": "22.9.1",
+    "electron-notarize": "^1.0.0"
   },
   "dependencies": {
     "electron-updater": "4.3.5"
   },
   "build": {
-    "appId": "City",
-    "publish": [
-      {
-        "provider": "github",
-        "owner": "anis8",
-        "repo": "city-hotel-app-production"
-      }
-    ],
+    "appId": "me.city.app",
+    "files": "!build/SignHook.js",
     "extraResources": [
       "./flash/**"
     ],
@@ -32,21 +28,13 @@
       "buildResources": "resources",
       "output": "release"
     },
-    "nsis": {
-      "installerIcon": "icon.ico",
-      "uninstallerIcon": "icon.ico",
-      "uninstallDisplayName": "City",
-      "oneClick": true,
-      "perMachine": false,
-      "artifactName": "City-${version}.${ext}"
-    },
-    "mac": {
-      "category": "your.app.category.type",
-      "target": [
-        "zip",
-        "dmg"
-      ]
-    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "anis8",
+        "repo": "city-hotel-app-production"
+      }
+    ],
     "win": {
       "target": [
         {
@@ -56,6 +44,47 @@
             "ia32"
           ]
         }
+      ]
+    },
+    "nsis": {
+      "installerIcon": "icon.ico",
+      "uninstallerIcon": "icon.ico",
+      "uninstallDisplayName": "City",
+      "oneClick": true,
+      "perMachine": false,
+      "artifactName": "City-${version}.${ext}"
+    },
+    "afterSign": "build/SignHook.js",
+    "mac": {
+      "category": "public.games.social-networking",
+      "darkModeSupport": true,
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "build/entitlements-mac.plist",
+      "entitlementsInherit": "build/entitlements-mac.plist",
+      "target": [
+        "dmg"
+      ]
+    },
+    "dmg": {
+      "iconSize": 160,
+      "contents": [
+        {
+          "x": 180,
+          "y": 170
+        },
+        {
+          "x": 480,
+          "y": 170,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
       ]
     }
   }
