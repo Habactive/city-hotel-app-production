@@ -1,19 +1,17 @@
 {
   "name": "city",
-  "version": "0.9.8",
+  "version": "0.9.6",
   "main": "app.js",
   "description": "City: Créez votre avatar, décorez votre appartement ! Tchattez avec vos amis.",
-  "author": "City Games",
+  "homepage": "https://habbocity.me",
+  "author": {
+    "name":"City Games",
+    "email":"contact@habbocity.me"
+  },
   "scripts": {
     "start": "electron .",
-    "publish": "electron-builder --win -p always",
+    "publish": "electron-builder --linux -p always",
     "build": "electron-builder --linux"
-  },
-  "devDependencies": {
-    "dotenv": "^8.2.0",
-    "electron": "11.1.0",
-    "electron-builder": "22.9.1",
-    "electron-notarize": "^1.0.0"
   },
   "dependencies": {
     "electron-updater": "4.3.5"
