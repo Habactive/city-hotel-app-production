@@ -64,6 +64,11 @@
     background: url('../images/screen.png');
 }
 
+
+.buttons .button .reload {
+    background: url('../images/reload.png');
+}
+
 .buttons .button .cache {
     background: url('../images/cache.png');
 }

@@ -33,8 +33,9 @@ switch (process.platform) {
 app.commandLine.appendSwitch("disable-renderer-backgrounding");
 app.commandLine.appendSwitch('high-dpi-support', "1");
 app.commandLine.appendSwitch('force-device-scale-factor', "1");
-
 app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname.includes(".asar") ? process.resourcesPath : __dirname, "flash/" + pluginName));
+app.commandLine.appendSwitch('disable-site-isolation-trials');
+
 let sendWindow = (identifier, message) => {
     mainWindow.webContents.send(identifier, message);
 };

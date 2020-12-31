@@ -69,6 +69,12 @@
             Zoom +1%
         </div>
     </div>
+    <div id="reload" class="button">
+        <div class="icon reload"></div>
+        <div class="tooltip">
+            Recharger
+        </div>
+    </div>
 </div>
 <div id="messages"></div>
 <script>
@@ -99,6 +105,7 @@
     const zoomIn = document.getElementById("zoomIn");
     const zoomOut = document.getElementById("zoomOut");
     const screen = document.getElementById("screen");
+    const reload = document.getElementById("reload");
 
     zoomIn.addEventListener('click', () => {
         ipcRenderer.send("zoomIn", "");
@@ -109,7 +116,9 @@
     zoomOut.addEventListener('click', () => {
         ipcRenderer.send("zoomOut", "");
     });
-
+    reload.addEventListener('click', () => {
+        document.getElementById("frame").contentWindow.location.reload();
+    });
 
     const alert = document.getElementById("alert");
     const cancel = document.getElementById("cancel");

@@ -3,11 +3,11 @@
   "version": "0.9.8",
   "main": "app.js",
   "description": "City: Créez votre avatar, décorez votre appartement ! Tchattez avec vos amis.",
-  "author": "City Games",
+  "author": "City Games <contact@habbocity.me>",
   "scripts": {
     "start": "electron .",
     "publish": "electron-builder --win -p always",
-    "build": "electron-builder --linux"
+    "build": "electron-builder --win"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
@@ -83,8 +83,8 @@
     },
     "linux": {
       "target": [
-        "AppImage",
-        "deb"
+        "deb",
+        "snap"
       ]
     }
   }
