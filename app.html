@@ -41,6 +41,9 @@
 </div>
 <iframe id="frame" width="100%" src="https://www.habbocity.me/profil?app=true"></iframe>
 <div class="buttons">
+    <div id="close">
+        <div id="close-button" style="transform: scaleX(-1);"></div>
+    </div>
     <div id="screen" class="button">
         <div class="icon screen"></div>
         <div class="tooltip">
@@ -106,6 +109,8 @@
     const zoomOut = document.getElementById("zoomOut");
     const screen = document.getElementById("screen");
     const reload = document.getElementById("reload");
+    const close = document.getElementById("close");
+    let isOpenButtons = true;
 
     zoomIn.addEventListener('click', () => {
         ipcRenderer.send("zoomIn", "");
@@ -118,6 +123,17 @@
     });
     reload.addEventListener('click', () => {
         document.getElementById("frame").contentWindow.location.reload();
+    });
+    close.addEventListener('click', () => {
+        if (!isOpenButtons) {
+            isOpenButtons = true;
+            document.querySelector('.buttons').style.width = "50px";
+            document.getElementById('close-button').style.transform = "scaleX(-1)";
+        } else {
+            isOpenButtons = false;
+            document.querySelector('.buttons').style.width = "0px";
+            document.getElementById('close-button').style.transform = "none";
+        }
     });
 
     const alert = document.getElementById("alert");
