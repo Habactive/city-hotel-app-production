@@ -1,6 +1,6 @@
 {
   "name": "city",
-  "version": "0.9.6",
+  "version": "1.0.0",
   "main": "app.js",
   "description": "City: Créez votre avatar, décorez votre appartement ! Tchattez avec vos amis.",
   "homepage": "https://habbocity.me",
