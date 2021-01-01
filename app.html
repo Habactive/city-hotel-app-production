@@ -108,6 +108,7 @@
     const zoomIn = document.getElementById("zoomIn");
     const zoomOut = document.getElementById("zoomOut");
     const screen = document.getElementById("screen");
+    const iframe = document.getElementById("frame").contentWindow;
     const reload = document.getElementById("reload");
     const close = document.getElementById("close");
     let isOpenButtons = true;
@@ -122,8 +123,19 @@
         ipcRenderer.send("zoomOut", "");
     });
     reload.addEventListener('click', () => {
-        document.getElementById("frame").contentWindow.location.reload();
+        iframe.location.reload();
     });
+
+    function clientFullScreen() {
+        if (iframe.location.href === 'https://www.habbocity.me/hotel' && iframe.document.getElementById('hotel1')) {
+            iframe.document.getElementById('hotel1').addEventListener('click', () => {
+                ipcRenderer.send("fullscreen", "");
+            });
+            clearInterval(checkClient);
+        }
+    }
+    const checkClient = setInterval(clientFullScreen, 1000);
+
     close.addEventListener('click', () => {
         if (!isOpenButtons) {
             isOpenButtons = true;
